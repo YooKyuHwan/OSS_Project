@@ -9,16 +9,18 @@
 
 #### 2) 레포지토리 최상위 디렉토리에서 아래의 명령어 실행
 ##### docker build -t mydb:0.1 -f DB/Dockerfile .
-'''shell
+```shell
   $ docker build -t mydb:0.1 -f DB/Dockerfile .
-'''
+  
+```
 
 #### 3) 도커로 mysql 서버 실행
 ##### docker run --name mydb -d -p 3306:3306 mydb:0.1
 ##### (주의!! 서버 빌드 및 실행 전에 mysql 서버 먼저 실행!!)
-'''shell
+```shell
   $ docker un --name mydb -d -p 3306:3306 mydb:0.1
-'''
+  
+```
 #### 4) IntelliJ 에서 프로젝트 실행(Docker 컨테이너로 실행X)
 ###### (mysql 연동하면서 따로 도커에서 서버 실행시 오류발생)
 ###### (Docker 컨테이너로 실행 하려면 아래와 같은 설정 필요)
@@ -30,11 +32,11 @@
 ##### 1. docker exec -it mydb /bin/bash
 ##### 2. mysql -u SKKU -p
 ##### 3. SKKU
-'''shell
+```shell
   $ docker exec -it mydb /bin/bash
   $ mysql -u SKKU -p
   $ SKKU
-'''
+```
 ###### (mysql root의 비번또한 SKKU 이면 현재 SKKU/SKKU로 유저이름/비번 설정되어있음)
 
 # #<기능>
