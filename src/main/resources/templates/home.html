@@ -33,34 +33,43 @@
       <table>
         <tr>
           <td>
-            <a>자유 게시판</a>
+            <a th:href="@{/board{id}/page{pageId}(id=1, pageId=1)}">자유 게시판</a>
+            <p th:each="post1 : ${posts1}" th:text="${post1.title}"></p>
           </td>
           <td>
-            <a>스포츠 게시판</a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a>프로그래밍 게시판</a>
-          </td>
-          <td>
-            <a>음악 게시판</a>
+            <a th:href="@{/board{id}/page{pageId}(id=2, pageId=1)}">스포츠 게시판</a>
+            <p th:each="post2 : ${posts2}" th:text="${post2.title}"></p>
           </td>
         </tr>
         <tr>
           <td>
-            <a>독서 게시판</a>
+            <a th:href="@{/board{id}/page{pageId}(id=3, pageId=1)}">프로그래밍 게시판</a>
+            <p th:each="post3 : ${posts3}" th:text="${post3.title}"></p>
           </td>
           <td>
-            <a>영화 게시판</a>
+            <a th:href="@{/board{id}/page{pageId}(id=4, pageId=1)}">음악 게시판</a>
+            <p th:each="post4 : ${posts4}" th:text="${post4.title}"></p>
           </td>
         </tr>
         <tr>
           <td>
-            <a>의류 게시판</a>
+            <a th:href="@{/board{id}/page{pageId}(id=5, pageId=1)}">독서 게시판</a>
+            <p th:each="post5 : ${posts5}" th:text="${post5.title}"></p>
           </td>
           <td>
-            <a>경제/경영 게시판</a>
+            <a th:href="@{/board{id}/page{pageId}(id=6, pageId=1)}">영화 게시판</a>
+            <p th:each="post6 : ${posts6}" th:text="${post6.title}"></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a th:href="@{/board{id}/page{pageId}(id=7, pageId=1)}">의류 게시판</a>
+            <p th:each="post7 : ${posts7}" th:text="${post7.title}"></p>
+          </td>
+          <td>
+            <a th:href="@{/board{id}/page{pageId}(id=8, pageId=1)}">경제/경영 게시판</a>
+            <p th:each="post8 : ${posts8}" th:text="${post8.title}"></p>
+          </td>
         </tr>
       </table>
     </div>
@@ -68,8 +77,20 @@
 
   </div>
   <div class="aside">
-    <a>로그인</a>
-    <a>회원 가입</a>
+    <th:block th:if="${session.isEmpty()}">
+      <a href="sign_in.html">로그인</a>
+      <a href="sign_up.html">회원가입</a>
+    </th:block>
+
+    <th:block th:unless="${session.isEmpty()}">
+      <p><span th:text="${session.member.name()}"></span>님</p>
+      <form action="/memberInfo" method="get">
+        <button type="submit" id="memberInfo">회원정보</button>
+      </form>
+      <form action="/signOut" method="post">
+        <button type="submit" id="logOutButton">로그아웃</button>
+      </form>
+    </th:block>
 
   </div>
 </div>
