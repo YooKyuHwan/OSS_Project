@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta content="text/html" charset="UTF-8">
+        <title>sign_up</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <form action="/sign_up_check" method="post">
+                <div class="from_list">
+                    <div class="form_id">
+                        <input type="text" id="id" name="id" placeholder="아이디" value maxlength="30" required>
+                    </div>
+                    <br>
+                    <div class="form_password">
+                        <input type="password" id="password" name="password" placeholder="비밀번호" required>
+                    </div>
+                    <br>
+                    <div class="form_name">
+                        <input type="text" id="name" name="name" placeholder="이름" required>
+                    </div>
+                    <br>
+                    <div class="form_workingname">
+                        <input type="text" id="workingname" name="workingname" placeholder="별명" required>
+                    </div>
+                    <br>
+                    <div class="form_email">
+                        <input type="email" id="email" name="email" placeholder="이메일" required>
+                    </div>
+                    <br>
+                </div>
+
+                <div class="input_button">
+                    <input type="submit" value="회원가입">
+                </div>
+            </form>
+        </div>
+
+        <div th:with="value=${'result'}">
+            <p></p>
+        </div>
+    </body>
+</html>

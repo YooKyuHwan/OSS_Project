@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta content="text/html" charset="UTF-8">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/createPostPage.css}">
+        <title>게시글 작성</title>
+    </head>
+
+    <body>
+        <p>게시글 작성 페이지 입니다.</p>
+        <div class="write_container">
+            <form class="post" th:action="@{/board/{boardId}/writePost(boardId=${boardId})}" th:method="post">
+                <div class="editor_menu">
+                    <button id="bold_button"><b>B</b></button>
+                    <button id="italic_button"><i>I</i></button>
+                    <button id="underline_button"><u>U</u></button>
+                    <button id="strike_button"><s>S</s></button>
+                    <button id="ordered_list_button">OL</button>
+                    <button id="unordered_list_button">UL</button>
+                </div>
+                <div class="editor">
+                    <div class="title_container">
+                        <label for="post_title"></label>
+                        <input type="text" id="post_title" name="title" placeholder="제목을 작성해주세요." required>
+                    </div>
+                    <br>
+                    <div class="content_container">
+                        <label for="post_content"></label>
+                        <textarea id="post_content" name="content" rows="30" cols="30" placeholder="내용을 작성해주세요" required></textarea>
+                    </div>
+                </div>
+                    <button type="submit" id="submit_button">작성 완료</button>
+            </form>
+
+
+            <div class="cancel">
+                <form th:action="@{/board/{boardId}/cancel(boardId=${boardId})}" th:method="get">
+                    <button type="submit" id="cancel_button">작성 취소</button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            const editor = document.getElementsByClassName('editor');
+            const boldBtn = document.getElementById('bold_button');
+            const italicBtn = document.getElementById('italic_button');
+            const underBtn = document.getElementById('underline_button');
+            const strikeBtn = document.getElementById('strike_button');
+            const orderedBtn = document.getElementById('ordered_list_button');
+            const unorderedBtn = document.getElementById('unordered_list_button');
+
+            boldBtn.addEventListener('click', function () {});
+            function focusEditor(){
+                editor.focus({preventScroll: true});
+            }
+
+        </script>
+
+    </body>
+</html>

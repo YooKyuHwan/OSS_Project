@@ -2,22 +2,70 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta content="text/html" charset="UTF-8">
-    <title>음악 게시판</title>
+    <title>음악 게시밍</title>
 </head>
 
 <body>
 <div class="home_button_container">
-    <button type="submit" id="home_button">홈페이지 이동</button>
+    <form th:action="@{/}" th:method="get">
+        <button type="submit" id="home_button">홈페이지 이동</button>
+    </form>
 </div>
 
 <p>음악 게시판 입니다. </p>
 
 <div class="post_container">
-    <button type="submit" id="remove_button">삭제하기(관리자 권한)</button>
+    <p th:if="${message}" th:text="${message}"></p>
+
+    <table>
+        <tr th:each="post : ${posts}">
+            <td>
+                <a th:text="${post.title}" th:href="@{/board/{boardId}/post{postId}(boardId=${boardId}, postId=${post.id})}"></a>
+            </td>
+            <td th:if="${!session.isEmpty() and session.member.role().toString().equals('ADMIN')}">
+                <form th:action="@{/board/{boardId}/post{postId}/remove/ADMIN(
+                                    boardId = ${boardId},
+                                    postId = ${post.id})}" th:method="post">
+                    <button type="submit" id="remove_button">삭제하기(관리자 권한)</button>
+                </form>
+            </td>
+        </tr>
+    </table>
 </div>
 
-<button type="submit" id="createPost">게시글 작성</button>
+<div th:if="${session.isEmpty()}"></div>
+<form th:action="@{/board/{boardId}/createPostPage(boardId=${boardId})}" th:method="get">
+    <button type="submit" id="createPost">게시글 작성</button>
+</form>
 
+<div class="page_number_container">
+    <table>
+        <tr>
+            <td th:if="${pageId} != 1">
+                <form th:action="@{/board{id}/page{pageId}(
+                                id = ${boardId},
+                                pageId = ${pageId}-1)}" th:method="get">
+                    <button type="submit">이전</button>
+                </form>
+            </td>
 
+            <td th:each="num : ${nums}">
+                <b><button th:if="${num} == ${pageId}" type="button" th:text="${num}" style="color: darkred; font-size: 17px;"></button></b>
+                <form th:if="${num} != ${pageId}" th:action="@{/board{id}/page{pageId}(id=${boardId}, pageId=${num})}"
+                      th:method="get">
+                    <button type="submit" th:text="${num}"></button>
+                </form>
+            </td>
+
+            <td th:if="${pageId} != ${pages}">
+                <form th:action="@{/board{id}/page{pageId}(
+                                id = ${boardId},
+                                pageId = ${pageId}+1)}" th:method="get">
+                    <button type="submit">다음</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

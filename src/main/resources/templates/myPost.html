@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta content="text/html" charset="UTF-8">
+        <title>내가 작성한 게시글</title>
+    </head>
+
+    <body>
+        <div class="home_button_container">
+            <form th:action="@{/}" th:method="get">
+                <button type="submit" id="home_button">홈페이지 이동</button>
+            </form>
+        </div>
+
+
+        <div class="container">
+            <p th:unless="${posts}">작성한 게시글이 없습니다. </p>
+
+            <table>
+                <tr th:each="post : ${posts}">
+                    <td>
+                        <a th:text="${post.title}" th:href="@{/board/{boardId}/post{postId}(
+                            boardId = ${post.boardJpa.id},
+                            postId = ${post.id})}"></a>
+                    </td>
+                    <td>
+                        <form th:action="@{/board/{boardId}/post{postId}/remove(
+                                    boardId = ${post.boardJpa.id},
+                                    postId = ${post.id})}" th:method="post">
+                            <button type="submit" id="remove_button">삭제 하기</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="page_number_container">
+                <table>
+                <tr>
+                    <td th:if="${pageId} != 1">
+                        <form th:action="@{/showMyPost/page/{pageId}(pageId = ${pageId}-1)}" th:method="get">
+                            <button type="submit">이전</button>
+                        </form>
+                    </td>
+
+                    <td th:each="num : ${nums}">
+                        <b><button th:if="${num} == ${pageId}" type="button" th:text="${num}" style="color: darkred; font-size: 17px;"></button></b>
+                        <form th:if="${num} != ${pageId}" th:action="@{/showMyPost/page/{pageId}(pageId=${num})}"
+                              th:method="get">
+                            <button type="submit" th:text="${num}"></button>
+                        </form>
+                    </td>
+
+                    <td th:if="${pageId} != ${pages}">
+                        <form th:action="@{/showMyPost/page/{pageId}(pageId = ${pageId}+1)}" th:method="get">
+                            <button type="submit">다음</button>
+                        </form>
+                    </td>
+                </tr>
+                </table>
+            </div>
+
+        </div>
+    </body>
+</html>

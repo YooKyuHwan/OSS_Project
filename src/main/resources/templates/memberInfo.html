@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta content="text/html" charset="UTF-8">
+        <title>회원 정보</title>
+    </head>
+
+    <body>
+        <div class="home_button_container">
+            <form th:action="@{/}" th:method="get">
+                <button type="submit" id="home_button">홈페이지 이동</button>
+            </form>
+        </div>
+
+        <div class="container">
+            <div class="basic_info">
+                <P>사용자 기본 정보</P>
+                <table>
+                    <tr>
+                        <td>ID: </td>
+                        <td th:text="${member.memberId()}"></td>
+                    </tr>
+                    <tr>
+                        <td>이름: </td>
+                        <td th:text="${member.name()}"></td>
+                        <td>
+                            <form action="/reviseMemberName" method="get">
+                                <input type="text" th:name="name"/>
+                                <button type="submit" id="revise_name_button">이름 수정</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>활동명: </td>
+                        <td th:text="${member.workingName()}"></td>
+                        <td>
+                            <form action="/reviseWorkingName" method="get">
+                                <input type="text" th:name="workingName"/>
+                                <button type="submit" id="revise_workingName_button">별명 수정</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email: </td>
+                        <td th:text="${member.email()}"></td>
+                    </tr>
+                    <tr>
+                        <td>권한: </td>
+                        <td th:text="${member.role()}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="myPost_container">
+            <form th:action="@{/showMyPost/page/{pageId}(pageId=1)}" th:method="get">
+                <button type="submit" id="myPost_button">내 게시글 보기</button>
+            </form>
+        </div>
+
+        <div class="myReply-container">
+            <form th:action="@{/showMyReply/page/{pageId}(pageId=1)}" th:method="get">
+                <button type="submit" id="myReply_button">내 댓글 보기</button>
+            </form>
+        </div>
+    </body>
+</html>

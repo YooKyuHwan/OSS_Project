@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta content="text/html" charset="UTF-8">
+        <title th:text="${post.title}"></title>
+    </head>
+
+    <body>
+        <div class="home_button_container">
+            <form th:action="@{/}" th:method="get">
+                <button type="submit" id="home_button">홈페이지 이동</button>
+            </form>
+        </div>
+
+        <div class="post_container">
+            <p class="post_title" th:text="${post.title()}"></p>
+            <h1 th:text="${post.content()}"></h1>
+        </div>
+        <br>
+        <div class="reply_container">
+            <form th:action="@{/createReply/post{postId}(postId = ${post.id()})}" th:method="post">
+                <input type="text" name="content" value="" placeholder="이곳에 댓글 작성해주세요." required/>
+                <button type="submit" id="create_reply_post">댓글 작성</button>
+            </form>
+
+            <form th:action="@{/showReply/post{postId}/page{pageId}(postId = ${post.id()}, pageId=1)}" th:method="get">
+                <button type="submit" id="show_reply_button">댓글 보기</button>
+            </form>
+        </div>
+    </body>
+</html>
