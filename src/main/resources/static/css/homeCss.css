@@ -1,0 +1,52 @@
+.header{
+    margin: 30px;
+    text-align: center;
+    height: 100px;
+    background-color: lightgray;
+}
+
+.header p{
+    font-size: 24px;
+}
+
+.container{
+    display: flex;
+    text-align: center;
+}
+
+.nav{
+    flex: 1;
+    height: 600px;
+    margin-left: 30px;
+    margin-right: 10px;
+    border: 4px solid darkgray;
+    text-align: center;
+    background-color: lightpink;
+}
+
+.body{
+    flex: 4;
+    height: 600px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border: 4px solid darkgray;
+    background-color: lightgray;
+}
+
+.aside{
+    flex: 1;
+    margin-right: 30px;
+    margin-left: 10px;
+    height: 600px;
+    border: 4px solid darkgray;
+    background-color: lightblue;
+}
+
+.titles{
+    text-align: left;
+}
+
+.footer{
+    margin: 20px;
+    text-align: center;
+}
