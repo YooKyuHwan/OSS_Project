@@ -23,6 +23,6 @@ public class BoardJpa {
     private BoardCategory category;
 
     //연관관계 매핑
-    @OneToMany(mappedBy = "boardJpa", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "boardJpa", fetch = FetchType.LAZY) //cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<PostJpa> postJpas = new ArrayList<>();
 }

@@ -35,7 +35,7 @@ public class PostJpa {
     @JoinColumn(name = "board_id", nullable = false)
     private BoardJpa boardJpa;
 
-    @OneToMany(mappedBy = "postJpa", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "postJpa", fetch = FetchType.LAZY)// cascade = CascadeType.REMOVE, orphanRemoval = true)
     //댓글보기를 눌렀을 때만 가져오게끔 구현
 
     private List<ReplyJpa> replies;
