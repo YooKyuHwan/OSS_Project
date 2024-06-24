@@ -56,7 +56,7 @@ public class ReplyController {
         }
         model.addAttribute("nums", numList);
 
-        return "/myReply";
+        return "myReply";
     }
 
     @GetMapping(value = "/showReply/post{postId}/page{pageId}")
@@ -94,14 +94,14 @@ public class ReplyController {
         //해당 게시글의 댓글보기 요청에 대해서만, model 통해서 댓글 개수 전달해주기
 
         System.out.println("numOfReply : " + numOfReply + "   numOfPage: " + numOfPage);
-        return "/replyOnPost";
+        return "replyOnPost";
     }
 
     @PostMapping(value = "/createReply/post{postId}")
     public String createReply(ReplyDto replyDto, @PathVariable Long postId, Model model, HttpSession httpSession){
         if(httpSession.getAttribute("member")==null){
             model.addAttribute("errorMessage", "로그인 후 댓글 작성해주세요.");
-            return "/sign_in";
+            return "sign_in";
         }
 
         ReplyJpa replyJpa = new ReplyJpa();

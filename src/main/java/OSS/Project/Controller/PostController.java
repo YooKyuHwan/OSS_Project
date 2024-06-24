@@ -35,12 +35,12 @@ public class PostController {
             //System.out.println("게시글 작성 권한 없습니다.");
             log.info("게시글 작성 권한이 없습니다. ");
             model.addAttribute("errorMessage", "로그인 후 게시글을 작성해주세요.");
-            return "/sign_in";
+            return "sign_in";
         }
         //System.out.println("게시글 작성 가능합니다. ");
         log.info("게시글 작성이 가능합니다. ");
         model.addAttribute("boardId", boardId);
-        return "/createPost";
+        return "createPost";
     }
 
     @PostMapping(value = "/board/{boardId}/writePost")
@@ -110,7 +110,7 @@ public class PostController {
         }
         model.addAttribute("nums", numList);
 
-        return "/myPost";
+        return "myPost";
     }
 
     @PostMapping(value = "/board/{boardId}/post{postId}/remove")

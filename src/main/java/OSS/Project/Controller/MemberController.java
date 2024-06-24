@@ -67,7 +67,7 @@ public class MemberController {
             log.error("가입 실패", e);
             //System.out.println(e.toString());
             //System.out.println("가입 실패");
-            return "/sign_up_duplicate";
+            return "sign_up_duplicate";
         }
     }
 
@@ -97,7 +97,7 @@ public class MemberController {
 
         } catch (Exception e){
             log.error("로그인 실패", e);
-            return "/sign_in_error";
+            return "sign_in_error";
         }
     }
 
@@ -105,7 +105,7 @@ public class MemberController {
     public String memberInfoPage(HttpSession httpSession, Model model){
         MemberDto memberDto = (MemberDto) httpSession.getAttribute("member");
         model.addAttribute("member", memberDto);
-        return "/memberInfo";
+        return "memberInfo";
     }
 
     @GetMapping(value = "/reviseMemberName")
@@ -121,7 +121,7 @@ public class MemberController {
                 memberDto.role());
         httpSession.setAttribute("member", newMember);
         model.addAttribute("member", newMember);
-        return "/memberInfo";
+        return "memberInfo";
     }
 
     @GetMapping(value = "/reviseWorkingName")
@@ -139,6 +139,6 @@ public class MemberController {
         httpSession.setAttribute("member", newMember);
         //System.out.println("별명 수정 " + workingName);
         log.info("별명 수정 " + workingName);
-        return "/memberInfo";
+        return "memberInfo";
     }
 }
